@@ -1,26 +1,184 @@
 @import "tailwindcss";
 
+/* ───────────────────────────────────────────────────────────────────────
+   The Batman palette — near-black noir with glowing crimson red.
+   ─────────────────────────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #060607;
+  --surface: #0d0d0f;
+  --surface-2: #131316;
+  --foreground: #ededee;
+  --muted: #a1a1aa;
+  --muted-2: #6b6b73;
+  --border: #232327;
+
+  --red: #e11d2a;
+  --red-bright: #ff2b3c;
+  --red-deep: #8f0f17;
+  --red-glow: rgba(225, 29, 42, 0.55);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-border: var(--border);
+  --color-red: var(--red);
+  --color-red-bright: var(--red-bright);
+  --color-red-deep: var(--red-deep);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Ambient noir backdrop: faint red bloom + carbon grid. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(60rem 40rem at 75% -10%, rgba(225, 29, 42, 0.16), transparent 60%),
+    radial-gradient(50rem 40rem at 0% 100%, rgba(143, 15, 23, 0.12), transparent 55%);
+  pointer-events: none;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(circle at 50% 30%, black, transparent 80%);
+  pointer-events: none;
+}
+
+/* ── Glow utilities ── */
+.text-glow {
+  text-shadow: 0 0 18px var(--red-glow), 0 0 40px rgba(225, 29, 42, 0.25);
+}
+.box-glow {
+  box-shadow: 0 0 0 1px rgba(225, 29, 42, 0.35), 0 0 24px -4px var(--red-glow);
+}
+.box-glow-soft {
+  box-shadow: 0 0 40px -12px var(--red-glow);
+}
+
+/* Gradient text for the name / accents. */
+.text-gradient {
+  background: linear-gradient(135deg, #fff 0%, #ffd5d8 35%, var(--red-bright) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Card surface with hover glow. */
+.card {
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(225, 29, 42, 0.55);
+  box-shadow: 0 0 32px -8px var(--red-glow);
+}
+
+/* Pill / chip. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 0.28rem 0.7rem;
+  font-size: 0.78rem;
+  transition: color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.chip:hover {
+  color: #fff;
+  border-color: rgba(225, 29, 42, 0.6);
+  box-shadow: 0 0 16px -6px var(--red-glow);
+}
+
+/* ── Scroll-reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Animations ── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 3.5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink::after {
+  content: "_";
+  color: var(--red-bright);
+  animation: blink 1.1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+  .animate-pulse-glow { animation: none; }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--red-deep), var(--red));
+  border-radius: 999px;
+  border: 2px solid var(--background);
+}
+::selection {
+  background: var(--red);
+  color: #fff;
 }
