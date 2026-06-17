@@ -126,8 +126,7 @@ export const education = [
 export const socials = {
   email: "hrushiksai0@gmail.com",
   linkedin: "https://www.linkedin.com/in/sai-hrushik-koppula",
-  // TODO: replace with your real GitHub profile URL.
-  github: "https://github.com/your-username",
+  github: "https://github.com/saihrushik",
   resume: "/Sai_Hrushik_Koppula_Resume.pdf",
 };
 
