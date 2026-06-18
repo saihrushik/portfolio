@@ -5,12 +5,19 @@ import { useEffect, useRef, useState } from "react";
 type Props = {
   children: React.ReactNode;
   className?: string;
-  /** Delay in ms before the element fades in. */
+  /** Delay in ms before the element animates in. */
   delay?: number;
+  /** "rotate" swings in from the right in 3D; "up" fades up. */
+  variant?: "rotate" | "up";
 };
 
-/** Fades + slides its children in when scrolled into view. */
-export default function Reveal({ children, className = "", delay = 0 }: Props) {
+/** Animates its children into view when scrolled into view. */
+export default function Reveal({
+  children,
+  className = "",
+  delay = 0,
+  variant = "rotate",
+}: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -30,10 +37,12 @@ export default function Reveal({ children, className = "", delay = 0 }: Props) {
     return () => observer.disconnect();
   }, []);
 
+  const base = variant === "rotate" ? "reveal-rotate" : "reveal";
+
   return (
     <div
       ref={ref}
-      className={`reveal ${visible ? "is-visible" : ""} ${className}`}
+      className={`${base} ${visible ? "is-visible" : ""} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
