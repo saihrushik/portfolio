@@ -208,6 +208,74 @@ body::after {
 }
 
 /* ───────────────────────────────────────────────────────────────────────
+   Orbit hub — Batman centered, sections revolving around him
+   ─────────────────────────────────────────────────────────────────────── */
+.orbit-stage {
+  width: min(82vmin, 540px);
+  height: min(82vmin, 540px);
+}
+.orbit-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(225, 29, 42, 0.18);
+  box-shadow: inset 0 0 50px -16px var(--red-glow);
+  animation: pole-glow 4s ease-in-out infinite;
+  pointer-events: none;
+}
+.orbit-core {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 40%;
+  height: 56%;
+  display: grid;
+  place-items: center;
+}
+.orbit-bat {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 16px rgba(225, 29, 42, 0.45));
+  animation: orbit-float 5s ease-in-out infinite;
+}
+.orbit-node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(13, 13, 15, 0.85);
+  backdrop-filter: blur(4px);
+  font-size: 0.82rem;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease,
+    scale 0.25s ease;
+  will-change: transform;
+}
+.orbit-node:hover {
+  color: #fff;
+  border-color: rgba(225, 29, 42, 0.7);
+  box-shadow: 0 0 22px -6px var(--red-glow);
+  scale: 1.12;
+  z-index: 5;
+}
+.orbit-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red-bright);
+  box-shadow: 0 0 10px 1px var(--red-glow);
+}
+@keyframes orbit-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* ───────────────────────────────────────────────────────────────────────
    Batman scroll guide — pole, pit, figure, grapple
    ─────────────────────────────────────────────────────────────────────── */
 .bat-rail {
