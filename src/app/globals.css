@@ -224,15 +224,37 @@ body::after {
 }
 .orbit-core {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 62%;
+  height: 62%;
+}
+/* Faint Batman silhouette framing the name. */
+.orbit-core-bat {
+  position: absolute;
   inset: 0;
-  margin: auto;
-  width: 40%;
-  height: 56%;
   display: grid;
   place-items: center;
+  opacity: 0.3;
+}
+.orbit-core-name {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgba(6, 6, 7, 0.85),
+    rgba(6, 6, 7, 0.55) 66%,
+    transparent
+  );
 }
 .orbit-bat {
-  width: 100%;
+  width: 78%;
   height: 100%;
   filter: drop-shadow(0 0 16px rgba(225, 29, 42, 0.45));
   animation: orbit-float 5s ease-in-out infinite;

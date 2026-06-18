@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { navLinks, profile, socials } from "@/lib/data";
-import Hero3DBackground from "./Hero3DBackground";
 
 export default function OrbitHero() {
   const stageRef = useRef<HTMLDivElement>(null);
@@ -54,23 +53,12 @@ export default function OrbitHero() {
       id="top"
       className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-24"
     >
-      {/* Subtle 3D bat-signal glow behind everything */}
-      <div className="pointer-events-none absolute inset-0 z-0 opacity-25">
-        <Hero3DBackground />
-      </div>
-
-      {/* Name + tagline */}
+      {/* Tagline banner */}
       <div className="relative z-10 mb-8 text-center">
-        <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-red/40 bg-red/5 px-4 py-1.5 font-mono text-xs text-red-bright box-glow-soft">
+        <p className="inline-flex items-center gap-2 rounded-full border border-red/40 bg-red/5 px-4 py-1.5 font-mono text-xs text-red-bright box-glow-soft">
           <span className="h-1.5 w-1.5 animate-pulse-glow rounded-full bg-red-bright" />
           {profile.graduating} · Open to opportunities
         </p>
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-          <span className="text-gradient text-glow">{profile.name}</span>
-        </h1>
-        <h2 className="mt-3 font-mono text-base text-red-bright sm:text-lg">
-          {profile.role}
-        </h2>
       </div>
 
       {/* Orbit stage */}
@@ -84,9 +72,21 @@ export default function OrbitHero() {
         <span className="orbit-ring" style={{ inset: "2%" }} />
         <span className="orbit-ring" style={{ inset: "26%" }} />
 
-        {/* Center Batman */}
+        {/* Center: your name, framed by a faint Batman silhouette */}
         <div className="orbit-core">
-          <BatHero />
+          <div className="orbit-core-bat">
+            <BatHero />
+          </div>
+          <div className="orbit-core-name">
+            <div>
+              <h1 className="text-gradient text-glow text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
+                {profile.name}
+              </h1>
+              <p className="mt-2 font-mono text-xs text-red-bright sm:text-sm">
+                {profile.role}
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Orbiting section nodes */}
