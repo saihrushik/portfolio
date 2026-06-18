@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 
 export default function Contact() {
   return (
-    <section id="contact" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-28">
+    <section id="contact" className="pop-section mx-auto max-w-5xl scroll-mt-20 px-6 py-28">
       <Reveal>
         <div className="card relative overflow-hidden p-10 text-center sm:p-16">
           {/* Bat-signal glow */}

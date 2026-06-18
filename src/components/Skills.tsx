@@ -5,7 +5,7 @@ import Tilt from "./Tilt";
 
 export default function Skills() {
   return (
-    <section id="skills" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-24">
+    <section id="skills" className="pop-section mx-auto max-w-5xl scroll-mt-20 px-6 py-24">
       <SectionHeading index="02 — Skills" title="Tools of the trade" />
 
       <div className="grid gap-5 sm:grid-cols-2">

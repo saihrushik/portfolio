@@ -5,7 +5,7 @@ import Tilt from "./Tilt";
 
 export default function Projects() {
   return (
-    <section id="projects" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-24">
+    <section id="projects" className="pop-section mx-auto max-w-5xl scroll-mt-20 px-6 py-24">
       <SectionHeading index="03 — Projects" title="Things I've built" />
 
       <div className="grid gap-6 md:grid-cols-2">

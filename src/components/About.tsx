@@ -4,7 +4,7 @@ import SectionHeading from "./SectionHeading";
 
 export default function About() {
   return (
-    <section id="about" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-24">
+    <section id="about" className="pop-section mx-auto max-w-5xl scroll-mt-20 px-6 py-24">
       <SectionHeading index="01 — About" title="Who I am" />
 
       <div className="grid gap-10 md:grid-cols-5">

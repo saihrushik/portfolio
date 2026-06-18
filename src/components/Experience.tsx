@@ -4,7 +4,7 @@ import SectionHeading from "./SectionHeading";
 
 export default function Experience() {
   return (
-    <section id="experience" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-24">
+    <section id="experience" className="pop-section mx-auto max-w-5xl scroll-mt-20 px-6 py-24">
       <SectionHeading index="04 — Path" title="Experience & education" />
 
       <div className="grid gap-12 md:grid-cols-2">

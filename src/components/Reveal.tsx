@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getScrollDirection } from "@/lib/scrollDirection";
 
 type Props = {
   children: React.ReactNode;
@@ -27,8 +28,11 @@ export default function Reveal({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          // Comes in (from the right) whenever it enters view.
           setVisible(true);
-          observer.disconnect();
+        } else if (getScrollDirection() === "up") {
+          // Scrolling up: let it swing back out the way it came.
+          setVisible(false);
         }
       },
       { threshold: 0.12 }

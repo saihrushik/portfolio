@@ -101,9 +101,21 @@ body::after {
   transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 .card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(225, 29, 42, 0.55);
-  box-shadow: 0 0 32px -8px var(--red-glow);
+  transform: translateY(-8px) scale(1.025);
+  border-color: rgba(225, 29, 42, 0.7);
+  box-shadow: 0 18px 48px -12px var(--red-glow), 0 0 22px -6px var(--red-glow);
+}
+
+/* Section pop — the whole section eases forward when the cursor is over it. */
+.pop-section {
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 0.5s ease;
+  transform: perspective(1600px) translateZ(0);
+  will-change: transform;
+}
+.pop-section:hover {
+  transform: perspective(1600px) translateZ(34px);
+  filter: brightness(1.05);
 }
 
 /* Pill / chip. */
@@ -270,10 +282,11 @@ body::after {
 .bat-figure {
   position: absolute;
   left: 50%;
-  width: 60px;
-  margin-left: -30px;
-  transition: top 0.12s linear;
-  filter: drop-shadow(0 0 10px rgba(225, 29, 42, 0.35));
+  width: 68px;
+  margin-left: -34px;
+  transition: top 0.1s linear;
+  filter: drop-shadow(0 0 12px rgba(225, 29, 42, 0.45));
+  animation: bat-glow 2.6s ease-in-out infinite;
 }
 .bat-figure svg {
   display: block;
@@ -334,35 +347,42 @@ body::after {
 @keyframes pit-swirl {
   to { transform: rotate(360deg); }
 }
+/* Sliding down: a loose wind-blown sway + slight downward stretch. */
 @keyframes bat-bob {
-  0%, 100% { transform: translateY(0) scaleY(1); }
-  50% { transform: translateY(3px) scaleY(1.04); }
+  0%, 100% { transform: translateX(-1px) translateY(0) rotate(-2deg) scaleY(1); }
+  50% { transform: translateX(1px) translateY(3px) rotate(2deg) scaleY(1.05); }
+}
+@keyframes bat-glow {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(225, 29, 42, 0.35)); }
+  50% { filter: drop-shadow(0 0 18px rgba(225, 29, 42, 0.6)); }
 }
 @keyframes bat-jump {
   0% { transform: translateY(0) scale(1, 1); }
-  25% { transform: translateY(-28px) scale(0.85, 1.2); }
-  55% { transform: translateY(3px) scale(1.14, 0.84); }
+  25% { transform: translateY(-30px) scale(0.84, 1.22); }
+  55% { transform: translateY(3px) scale(1.16, 0.82); }
   100% { transform: translateY(0) scale(1, 1); }
 }
 @keyframes cape-stream {
-  0%, 100% { transform: rotate(-5deg) scaleY(1); }
-  50% { transform: rotate(5deg) scaleY(1.08); }
+  0% { transform: rotate(-7deg) scaleY(0.96); }
+  50% { transform: rotate(6deg) scaleY(1.12); }
+  100% { transform: rotate(-7deg) scaleY(0.96); }
 }
+/* Climbing: each arm reaches up, grabs, and pulls down — out of phase. */
 @keyframes climb-arm-l {
-  0%, 100% { transform: rotate(-12deg); }
-  50% { transform: rotate(14deg); }
+  0%, 100% { transform: translateY(2px) rotate(-14deg); }
+  50% { transform: translateY(-4px) rotate(12deg); }
 }
 @keyframes climb-arm-r {
-  0%, 100% { transform: rotate(14deg); }
-  50% { transform: rotate(-12deg); }
+  0%, 100% { transform: translateY(-4px) rotate(12deg); }
+  50% { transform: translateY(2px) rotate(-14deg); }
 }
 @keyframes climb-leg-l {
-  0%, 100% { transform: rotate(10deg); }
-  50% { transform: rotate(-8deg); }
+  0%, 100% { transform: rotate(14deg); }
+  50% { transform: rotate(-10deg); }
 }
 @keyframes climb-leg-r {
-  0%, 100% { transform: rotate(-8deg); }
-  50% { transform: rotate(10deg); }
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(14deg); }
 }
 
 /* ── Rotate-in-from-right reveal ── */
@@ -388,11 +408,16 @@ body::after {
   .bat-anim-climb .bat-leg-r,
   .bat-pit::before,
   .bat-pit::after,
-  .bat-pole {
+  .bat-pole,
+  .bat-figure {
     animation: none !important;
   }
   .bat-figure {
     transition: none;
+  }
+  .pop-section,
+  .pop-section:hover {
+    transform: none;
   }
   .reveal-rotate {
     opacity: 1;
