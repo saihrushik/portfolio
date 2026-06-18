@@ -1,6 +1,7 @@
 import { skills } from "@/lib/data";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import Tilt from "./Tilt";
 
 export default function Skills() {
   return (
@@ -10,18 +11,20 @@ export default function Skills() {
       <div className="grid gap-5 sm:grid-cols-2">
         {skills.map((group, i) => (
           <Reveal key={group.group} delay={i * 70}>
-            <div className="card h-full p-6">
-              <h3 className="mb-4 font-mono text-sm text-red-bright">
-                {group.group}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span key={item} className="chip">
-                    {item}
-                  </span>
-                ))}
+            <Tilt max={6}>
+              <div className="card h-full p-6">
+                <h3 className="mb-4 font-mono text-sm text-red-bright">
+                  {group.group}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <span key={item} data-batman-jump className="chip cursor-pointer">
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Tilt>
           </Reveal>
         ))}
       </div>
