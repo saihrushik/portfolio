@@ -157,49 +157,62 @@ function BatHero() {
       </defs>
 
       {/* Ground glow */}
-      <ellipse cx="60" cy="138" rx="34" ry="7" fill="url(#oh-floor)" />
+      <ellipse cx="60" cy="139" rx="36" ry="7" fill="url(#oh-floor)" />
 
-      {/* Cape spread wide */}
+      {/* Cape spread wide, sharp + angular */}
       <path
-        d="M60 40 C 28 48 20 86 14 132 L 34 110 L 40 130 L 50 112 L 60 134 L 70 112 L 80 130 L 86 110 L 106 132 C 100 86 92 48 60 40 Z"
+        d="M60 38 C 26 46 19 88 12 134 L 33 108 L 38 132 L 49 110 L 60 136 L 71 110 L 82 132 L 87 108 L 108 134 C 101 88 94 46 60 38 Z"
         fill="url(#oh-cape)"
-        stroke="rgba(225,29,42,0.45)"
+        stroke="rgba(225,29,42,0.4)"
         strokeWidth="1.2"
       />
 
-      {/* Legs */}
-      <path d="M54 96 L50 130 L57 130 L60 98 Z" fill="#0a0a0c" />
-      <path d="M66 96 L70 130 L63 130 L60 98 Z" fill="#0a0a0c" />
+      {/* Raised cape collar framing the cowl */}
+      <path d="M50 50 C 42 46 39 33 43 24 L 52 47 Z" fill="#0a0a0d" />
+      <path d="M70 50 C 78 46 81 33 77 24 L 68 47 Z" fill="#0a0a0d" />
 
-      {/* Body */}
+      {/* Legs — planted, slightly apart */}
+      <path d="M52 96 L47 132 L56 132 L59 98 Z" fill="#0a0a0c" />
+      <path d="M68 96 L73 132 L64 132 L61 98 Z" fill="#0a0a0c" />
+
+      {/* Body — broad shoulders, tapered waist */}
       <path
-        d="M60 48 C 47 48 44 62 47 82 C 50 98 70 98 73 82 C 76 62 73 48 60 48 Z"
+        d="M60 52 C 43 52 41 66 45 86 C 48 100 72 100 75 86 C 79 66 77 52 60 52 Z"
         fill="#0c0c0f"
-        stroke="rgba(225,29,42,0.25)"
+        stroke="rgba(225,29,42,0.22)"
         strokeWidth="0.9"
       />
 
       {/* Red chest emblem */}
       <path
-        d="M60 62 l4.5 -4 -1.4 5.4 5.4 -1.4 -4 4 4 4 -5.4 -1.4 1.4 5.4 -4.5 -4 -4.5 4 1.4 -5.4 -5.4 1.4 4 -4 -4 -4 5.4 1.4 -1.4 -5.4 z"
+        d="M60 64 l4.5 -4 -1.4 5.4 5.4 -1.4 -4 4 4 4 -5.4 -1.4 1.4 5.4 -4.5 -4 -4.5 4 1.4 -5.4 -5.4 1.4 4 -4 -4 -4 5.4 1.4 -1.4 -5.4 z"
         fill="var(--red-bright)"
-        opacity="0.92"
+        opacity="0.9"
       />
 
-      {/* Arms */}
-      <path d="M47 54 C 40 60 38 74 40 88 L 45 86 C 44 74 46 64 50 58 Z" fill="#0a0a0c" />
-      <path d="M73 54 C 80 60 82 74 80 88 L 75 86 C 76 74 74 64 70 58 Z" fill="#0a0a0c" />
+      {/* Arms — muscular, fists clenched at sides */}
+      <path d="M45 56 C 36 62 34 80 38 94 L 45 92 C 43 78 45 66 50 60 Z" fill="#0a0a0c" />
+      <path d="M75 56 C 84 62 86 80 82 94 L 75 92 C 77 78 75 66 70 60 Z" fill="#0a0a0c" />
+      <circle cx="40" cy="95" r="3.4" fill="#0c0c0f" />
+      <circle cx="80" cy="95" r="3.4" fill="#0c0c0f" />
 
-      {/* Cowl with ears */}
+      {/* Angular cowl — tall sharp ears, defined jaw */}
       <path
-        d="M48 44 L 51 22 L 56 40 C 57.5 37 62.5 37 64 40 L 69 22 L 72 44 C 72 53 48 53 48 44 Z"
-        fill="#08080a"
+        d="M49 46 L 45 17 L 55 41 C 57 38 63 38 65 41 L 75 17 L 71 46 C 71 55 67 60 60 60 C 53 60 49 55 49 46 Z"
+        fill="#070709"
       />
 
-      {/* Glowing eyes */}
+      {/* Brow shadow — angry V */}
+      <path
+        d="M52 42 L60 47 L68 42 L66 45 L60 49 L54 45 Z"
+        fill="#000"
+        opacity="0.55"
+      />
+
+      {/* Narrow, slanted, menacing eyes */}
       <g filter="url(#oh-eye)" fill="var(--red-bright)">
-        <path d="M53 40 l6 -2 0 4 -6 2 z" />
-        <path d="M67 40 l-6 -2 0 4 6 2 z" />
+        <path d="M52.5 43 L59 47 L58 49 L52.5 45.5 Z" />
+        <path d="M67.5 43 L61 47 L62 49 L67.5 45.5 Z" />
       </g>
     </svg>
   );
